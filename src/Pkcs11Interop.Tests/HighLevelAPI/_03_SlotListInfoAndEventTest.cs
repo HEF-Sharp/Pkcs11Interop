@@ -84,8 +84,8 @@ namespace Net.Pkcs11Interop.Tests.HighLevelAPI
             {
                 // Wait for a slot event
                 bool eventOccured = false;
-                ulong slotId = 0;
-                pkcs11Library.WaitForSlotEvent(WaitType.NonBlocking, out eventOccured, out slotId);
+                ISlot slot = null;
+                pkcs11Library.WaitForSlotEvent(WaitType.NonBlocking, out eventOccured, out slot);
                 Assert.IsFalse(eventOccured);
             }
         }

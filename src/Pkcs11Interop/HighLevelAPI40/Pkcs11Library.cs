@@ -76,6 +76,20 @@ namespace Net.Pkcs11Interop.HighLevelAPI40
         protected LowLevelAPI40.Pkcs11Library _pkcs11Library = null;
 
         /// <summary>
+        /// Low level PKCS#11 wrapper
+        /// </summary>
+        public LowLevelPkcs11Library LowLevelLibrary
+        {
+            get
+            {
+                if (this._disposed)
+                    throw new ObjectDisposedException(this.GetType().FullName);
+
+                return _pkcs11Library;
+            }
+        }
+
+        /// <summary>
         /// Initializes new instance of Pkcs11Library class
         /// </summary>
         /// <param name="factories">Factories to be used by Developer and Pkcs11Interop library</param>
@@ -235,8 +249,8 @@ namespace Net.Pkcs11Interop.HighLevelAPI40
         /// </summary>
         /// <param name="waitType">Type of waiting for a slot event</param>
         /// <param name="eventOccured">Flag indicating whether event occured</param>
-        /// <param name="slotId">PKCS#11 handle of slot that the event occurred in</param>
-        public void WaitForSlotEvent(WaitType waitType, out bool eventOccured, out ulong slotId)
+        /// <param name="slot">slot that the event occurred in</param>
+        public void WaitForSlotEvent(WaitType waitType, out bool eventOccured, out ISlot slot)
         {
             if (this._disposed)
                 throw new ObjectDisposedException(this.GetType().FullName);
@@ -252,12 +266,14 @@ namespace Net.Pkcs11Interop.HighLevelAPI40
                 if (rv == CKR.CKR_OK)
                 {
                     eventOccured = true;
-                    slotId = ConvertUtils.UInt32ToUInt64(slotId_);
+                    var slotId = ConvertUtils.UInt32ToUInt64(slotId_);
+                    slot = _factories.SlotFactory.Create(_factories, _pkcs11Library, slotId);
                 }
                 else if (rv == CKR.CKR_NO_EVENT)
                 {
                     eventOccured = false;
-                    slotId = ConvertUtils.UInt32ToUInt64(slotId_);
+                    _ = ConvertUtils.UInt32ToUInt64(slotId_);
+                    slot = null;
                 }
                 else
                 {
@@ -269,7 +285,8 @@ namespace Net.Pkcs11Interop.HighLevelAPI40
                 if (rv == CKR.CKR_OK)
                 {
                     eventOccured = true;
-                    slotId = ConvertUtils.UInt32ToUInt64(slotId_);
+                    var slotId = ConvertUtils.UInt32ToUInt64(slotId_);
+                    slot = _factories.SlotFactory.Create(_factories, _pkcs11Library, slotId);
                 }
                 else
                 {

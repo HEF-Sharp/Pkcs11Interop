@@ -41,6 +41,14 @@ namespace Net.Pkcs11Interop.HighLevelAPI
         }
 
         /// <summary>
+        /// Low level PKCS#11 wrapper
+        /// </summary>
+        LowLevelPkcs11Library LowLevelLibrary
+        {
+            get;
+        }
+
+        /// <summary>
         /// Gets general information about loaded PKCS#11 library
         /// </summary>
         /// <returns>General information about loaded PKCS#11 library</returns>
@@ -58,7 +66,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI
         /// </summary>
         /// <param name="waitType">Type of waiting for a slot event</param>
         /// <param name="eventOccured">Flag indicating whether event occured</param>
-        /// <param name="slotId">PKCS#11 handle of slot that the event occurred in</param>
-        void WaitForSlotEvent(WaitType waitType, out bool eventOccured, out ulong slotId);
+        /// <param name="slot">slot that the event occurred in</param>
+        void WaitForSlotEvent(WaitType waitType, out bool eventOccured, out ISlot slot);
     }
 }

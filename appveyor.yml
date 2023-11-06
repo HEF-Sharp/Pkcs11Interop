@@ -31,6 +31,9 @@ test_script:
 - sh: cd ./src/Pkcs11Interop.Tests/ && nuget install -Source https://api.nuget.org/v3/index.json Appveyor.TestLogger && cd ../..
 - sh: dotnet test -f netcoreapp3.1 --test-adapter-path:. --logger:Appveyor ./src/Pkcs11Interop.Tests/
 
-artifacts:
-- path: build/nuget-unsigned/
-  name: Pkcs11Interop
+deploy:
+- provider: NuGet
+  api_key:
+    secure: KqSVNlWP/wmmLwVWaGLrIx45YXTw3GaTmBG5Lb7F0vUVePl/SVeX3K7e4NxUbnBe
+  skip_symbols: true
+  artifact: /.*\.nupkg/

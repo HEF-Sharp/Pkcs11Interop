@@ -3,8 +3,8 @@ Pkcs11Interop
 **Managed .NET wrapper for unmanaged PKCS#11 libraries**
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/Pkcs11Interop/Pkcs11Interop/blob/master/LICENSE.md)
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/lb1jxb4t4203g3t9/branch/master?svg=true)](https://ci.appveyor.com/project/pkcs11interop/pkcs11interop/branch/master)
-[![NuGet](https://img.shields.io/badge/nuget-pkcs11interop-blue.svg)](https://www.nuget.org/packages/Pkcs11Interop/)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/1q52dtvdyfmd2vb4/branch/master?svg=true)](https://ci.appveyor.com/project/wanlitao/pkcs11interop/branch/master)
+[![NuGet](https://img.shields.io/badge/nuget-pkcs11interop-blue.svg)](https://www.nuget.org/packages/HEF.Porting.Pkcs11Interop/)
 [![Stack Overflow](https://img.shields.io/badge/stack-pkcs11interop-blue.svg)](https://stackoverflow.com/questions/tagged/pkcs11interop)
 [![Twitter](https://img.shields.io/badge/twitter-p11interop-blue.svg)](https://twitter.com/p11interop)
 

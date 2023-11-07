@@ -4,7 +4,7 @@ branches:
   only:
   - master
 
-skip_tags: true
+skip_non_tags: true
 
 environment:
   matrix:
@@ -36,6 +36,8 @@ artifacts:
 
 deploy:
 - provider: NuGet
+  on:
+    platform: netstandard2.0
   api_key:
     secure: KqSVNlWP/wmmLwVWaGLrIx45YXTw3GaTmBG5Lb7F0vUVePl/SVeX3K7e4NxUbnBe
   skip_symbols: true
